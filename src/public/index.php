@@ -58,7 +58,8 @@ $app->get("/users/{id}", function(Request $request, Response $response, $args){
 
 $app->post("/users[/]", function(Request $request, Response $response){
 	$user = $request->getParsedBody();
-	$stmt = $this->db->prepare("INSERT INTO users (name, username, email, password) VALUE (?,?,?,?)");
+	$sql = "INSERT INTO users (name, username, email, password) VALUE (?, ?, ?, ?)";
+	$stmt = $this->db->prepare($sql);
 	$params = [
 		$user["name"],
 		$user["username"],
